@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                window.localStorage.clear();
+
+                $("button").click(function(){
+                    $.post("http://api-siaga-qas.pupuk-indonesia.com/api_siaga/public/oauth/token",
+                        {
+                            grant_type: "password",
+                            client_id: "2",
+                            client_secret: "bwOtiLuY6WrFu8eWmmacw03QAScky2Aj5otSCG28",
+                            username: "RT0000001512",
+                            password: "test123"
+                        },
+                        function(data,status){
+                            alert("Data: " + data + "\nStatus: " + status);
+                            console.log(data);
+                            window.localStorage.setItem('tokenType', data.token_type);
+                            window.localStorage.setItem('accessToken', data.access_token);
+                            window.location.href="./salesOrderList.html"
+                        });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <button>Login</button>
+    </body>
+
+</html>
